@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:image_downloader_web/image_downloader_web.dart';
@@ -57,7 +56,7 @@ class _qrcodeState extends State<qrcode> {
             }
           }
 
-        }, child: const Text("Download")
+        }, child: const Text( kIsWeb ? "Download" : "Salvar ou Compartilhar")
         )
       ],
     );
