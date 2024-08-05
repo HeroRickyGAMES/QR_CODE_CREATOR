@@ -46,13 +46,12 @@ class _qrcodeState extends State<qrcode> {
             await WebImageDownloader.downloadImageFromUInt8List(uInt8List: bytes, name: 'qrcode');
           }else{
             if(Platform.isAndroid){
-              final filename = 'qr_code.png';
+              const filename = 'qr_code.png';
               final tempDir = await getTemporaryDirectory(); // Get temporary directory to store the generated image
               final file = await File('${tempDir.path}/$filename').create(); // Create a file to store the generated image
               var bytes = image!.buffer.asUint8List(); // Get the image bytes
               await file.writeAsBytes(bytes); // Write the image bytes to the file
-              final path = await Share.shareFiles([file.path], text: 'QR code for ${widget.url}', subject: 'QR Code', mimeTypes: ['image/png']); // Share the generated image using the share_plus package
-              //print('QR code shared to: $path');
+              await Share.shareFiles([file.path], text: 'QR code for ${widget.url}', subject: 'QR Code', mimeTypes: ['image/png']); // Share the generated image using the share_plus package
             }
           }
 
