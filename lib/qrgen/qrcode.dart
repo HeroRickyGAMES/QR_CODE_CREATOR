@@ -51,7 +51,13 @@ class _qrcodeState extends State<qrcode> {
               final file = await File('${tempDir.path}/$filename').create(); // Create a file to store the generated image
               var bytes = image!.buffer.asUint8List(); // Get the image bytes
               await file.writeAsBytes(bytes); // Write the image bytes to the file
-              await Share.shareFiles([file.path], text: 'QR code for ${widget.url}', subject: 'QR Code', mimeTypes: ['image/png']); // Share the generated image using the share_plus package
+              final xfile = XFile(file.path);
+              await Share.shareXFiles(
+                [xfile],
+                text: 'QR code for ${widget.url}',
+                subject: 'QR Code',
+                fileNameOverrides: ['image/png'],
+              );
             }
           }
 

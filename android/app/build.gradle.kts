@@ -29,23 +29,18 @@ if (keystorePropertiesFile.exists()) {
     }
 }
 
-val flutterVersionCode = localProperties.getProperty("flutter.versionCode")?.toIntOrNull() ?: 1
-val flutterVersionName = localProperties.getProperty("flutter.versionName") ?: "1.0"
-
-
 android {
     namespace = "com.hrs.qr_code_generator"
     compileSdk = 36
     ndkVersion = "27.0.12077973"
 
     compileOptions {
-        isCoreLibraryDesugaringEnabled = true // Correct property name in Kotlin DSL
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
 
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = JavaVersion.VERSION_11.toString()
     }
 
     defaultConfig {
@@ -55,9 +50,8 @@ android {
         // For more information, see: https://flutter.dev/to/review-gradle-config.
         minSdk = 23
         targetSdk = 36
-        versionCode = flutterVersionCode
-        versionName = flutterVersionName
-        multiDexEnabled = true
+        versionCode = flutter.versionCode
+        versionName = flutter.versionName
     }
 
     signingConfigs {
@@ -71,19 +65,9 @@ android {
 
     buildTypes {
         release {
-            // TODO: Add your own signing config for the release build.
-            // Signing with the debug keys for now, so `flutter run --release` works.
             signingConfig = signingConfigs.getByName("release") // Access by name
         }
-        debug {
-            signingConfig = signingConfigs.getByName("release") // Access by name (assuming you want to use the release signing for debug too)
-        }
     }
-}
-
-dependencies {
-    // For AGP 7.4+
-    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.0.3")
 }
 
 flutter {
