@@ -1,5 +1,5 @@
 <div align="center">
-<img src="https://raw.githubusercontent.com/HeroRickyGAMES/QR_CODE_CREATOR/main/assets/ic_launcher.png" alt="Logo do Projeto" width="150" height="150">
+<img src="https://raw.githubusercontent.com/HeroRickyGAMES/QR_CODE_CREATOR/master/assets/ic_launcher.png" alt="Logo do Projeto" width="150" height="150">
 <h1>Gerador de QR Code</h1>
 <p>
 <strong>Um aplicativo simples e elegante para gerar códigos QR, construído com Flutter.</strong>
