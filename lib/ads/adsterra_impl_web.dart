@@ -49,6 +49,7 @@ class _AdsterraWebWidgetState extends State<AdsterraWebWidget> {
   Widget build(BuildContext context) {
     return SizedBox(
       height: 60,
+      width: double.infinity,
       child: HtmlElementView(viewType: _viewType),
     );
   }
@@ -62,7 +63,9 @@ void _registerViewFactory() {
       return html.DivElement()
         ..id = AdsterraConfig.nativeBannerContainerId
         ..style.width = '100%'
-        ..style.height = '100%';
+        ..style.height = '100%'
+        ..style.overflow = 'hidden'
+        ..style.textAlign = 'center';
     });
   } catch (_) {}
 }
