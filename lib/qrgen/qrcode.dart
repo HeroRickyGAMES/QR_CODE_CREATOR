@@ -1,10 +1,12 @@
 import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:image_downloader_web/image_downloader_web.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:share_plus/share_plus.dart';
+
+import 'web_downloader_stub.dart'
+    if (dart.library.js_interop) 'web_downloader.dart';
 
 //Programado por HeroRickyGames
 
@@ -43,7 +45,7 @@ class _qrcodeState extends State<qrcode> {
           if(kIsWeb){
             var bytes = image!.buffer.asUint8List(); // Get the image bytes
 
-            await WebImageDownloader.downloadImageFromUInt8List(uInt8List: bytes, name: 'qrcode');
+            await downloadImage(bytes, 'qrcode');
           }else{
             if(Platform.isAndroid){
               const filename = 'qr_code.png';
@@ -52,11 +54,13 @@ class _qrcodeState extends State<qrcode> {
               var bytes = image!.buffer.asUint8List(); // Get the image bytes
               await file.writeAsBytes(bytes); // Write the image bytes to the file
               final xfile = XFile(file.path);
-              await Share.shareXFiles(
-                [xfile],
-                text: 'QR code for ${widget.url}',
-                subject: 'QR Code',
-                fileNameOverrides: ['image/png'],
+              await SharePlus.instance.share(
+                ShareParams(
+                  files: [xfile],
+                  text: 'QR code for ${widget.url}',
+                  subject: 'QR Code',
+                  fileNameOverrides: ['image/png'],
+                ),
               );
             }
           }

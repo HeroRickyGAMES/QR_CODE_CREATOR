@@ -1,11 +1,11 @@
 {
-    "name": "qr_code_generator",
-    "short_name": "qr_code_generator",
+    "name": "QR Code Generator",
+    "short_name": "QR Code",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
     "theme_color": "#0175C2",
-    "description": "A new Flutter project.",
+    "description": "Crie QR Codes gratuitamente.",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [
