@@ -2,6 +2,8 @@ import 'dart:io';
 import 'package:fluid_kit/fluid_kit.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'package:qr_code_generator/ads/adsterra_widget.dart';
 import 'package:qr_code_generator/mobileAds/mobileAds.dart';
 import 'package:qr_code_generator/qrgen/qrcode.dart';
 
@@ -19,6 +21,7 @@ main(){
         )
     );
   }else if(Platform.isAndroid){
+    MobileAds.instance.initialize();
     runApp(
         MaterialApp(
           theme: ThemeData(
@@ -184,11 +187,12 @@ class _mainTelaState extends State<mainTela> {
                   ),
                 ],
               ),
-             kIsWeb ?
-                 Container(
-
-                 ):
-             Container(
+              kIsWeb ?
+              Container(
+                padding: const EdgeInsets.all(16),
+                child: const AdsterraWidget(),
+              ):
+              Container(
                 padding: const EdgeInsets.all(16),
                 child: const mobileAds(),
               ),
