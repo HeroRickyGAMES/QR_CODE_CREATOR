@@ -48,7 +48,7 @@ class _AdsterraWebWidgetState extends State<AdsterraWebWidget> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 120,
+      height: 60,
       child: HtmlElementView(viewType: _viewType),
     );
   }
